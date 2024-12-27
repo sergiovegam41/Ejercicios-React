@@ -1,28 +1,31 @@
 import React, { useState } from 'react'
 import { AddCategory } from './components/AddCategory'
+import Category from './components/Category'
+
 
 export const GifExpertApp = () => {
 
-    const [categories, setCategories] = useState(['tech','lol'])
+    const [categories, setCategories] = useState(['welcome'])
 
-    console.log(categories)
+    // console.log(categories)
 
-    function _setNewCategory(){
-        setCategories([...categories,'new'])
+    function _setNewCategory(cat){
+        setCategories([cat,...categories])
     }
+
   return (
    <>
-   <h1> App </h1>
+   <h1> Gifs </h1>
 
-   <ol>
-    { categories.map( category => {
-        return <li key={category}>{category}</li>
-    }) }
-   </ol>
+    <AddCategory setNewCategory={_setNewCategory} />
 
-   <AddCategory/>
 
-   <button onClick={_setNewCategory}>agregar</button>
+            { categories.map( category => {
+                return <Category key={category} category={category} />
+        }) }
+
+
+
 
    </>
   )
